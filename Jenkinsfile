@@ -17,6 +17,13 @@ pipeline{
             }
             
         }
+        stage("Continue?"){
+            steps{
+                input 'Are you sure to deploy on Test ?'
+            }
+            
+        }
+        
         stage("DeployOnTest"){
             steps{
 
