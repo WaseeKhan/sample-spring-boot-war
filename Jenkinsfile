@@ -25,6 +25,14 @@ pipeline{
             }
             
         }
+        stage("DeployOnProd"){
+            steps{
+
+                deploy adapters: [tomcat10(credentialsId: 'tomct9details', path: '', url: 'http://192.168.65.1:8082/')], contextPath: '/sampleapp', war: '**/*.war'
+
+            }
+            
+        }
     }
     post{
         always{
