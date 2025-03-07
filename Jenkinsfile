@@ -14,15 +14,14 @@ pipeline{
         stage("Build"){
             steps{
                 //mvn package
-                mvn package
-                
+                sh "mvn package"
             }
         }
         stage("DeployOnTest"){
             steps{
                 //use container
                 deploy adapters: [tomcat9(credentialsId: 'tomct9details', path: '', url: 'http://192.168.65.2:8081/')], contextPath: '/sampleapp', war: '**/*.war'
-                echo "========executing deploy on test========"
+                
             }
         }
         stage("DeployOnProd"){
